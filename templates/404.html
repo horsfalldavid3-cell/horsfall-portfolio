@@ -1,0 +1,70 @@
+```html
+{% extends "base.html" %}
+
+{% block title %}404 | Page Not Found{% endblock %}
+
+{% block meta_description %}
+The page you're looking for could not be found. Return to Dave's portfolio to explore projects, skills, and services.
+{% endblock %}
+
+{% block content %}
+
+<section class="error-page">
+
+    <div class="error-background">
+        <div class="error-orb error-orb-one"></div>
+        <div class="error-orb error-orb-two"></div>
+        <div class="error-grid"></div>
+    </div>
+
+    <div class="container error-container">
+
+        <div class="error-code">
+            <span>4</span>
+            <span class="error-code-icon">&lt;/&gt;</span>
+            <span>4</span>
+        </div>
+
+        <span class="section-label">ERROR 404</span>
+
+        <h1>
+            Looks like you've wandered into the
+            <span>wrong part of the internet.</span>
+        </h1>
+
+        <p class="error-description">
+            The page you're looking for may have moved,
+            been removed, or never existed in the first place.
+            Don't worry — there's plenty more to explore.
+        </p>
+
+        <div class="error-actions">
+
+            <a href="{% url 'home' %}" class="button button-primary">
+                Back to Portfolio
+                <span>↗</span>
+            </a>
+
+            <a href="{% url 'home' %}#projects" class="button button-secondary">
+                Explore Projects
+            </a>
+
+        </div>
+
+        <div class="error-terminal" aria-hidden="true">
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+
+            <div class="terminal-text">
+                <span>404</span> — page_not_found
+                <span class="terminal-cursor">_</span>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+```

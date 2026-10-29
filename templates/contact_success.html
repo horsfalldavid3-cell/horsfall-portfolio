@@ -1,0 +1,88 @@
+```html
+{% extends "base.html" %}
+
+{% block title %}Message Sent | Portfolio{% endblock %}
+
+{% block content %}
+
+<section class="success-page">
+
+    <div class="success-background">
+
+        <div class="success-orb success-orb-one"></div>
+        <div class="success-orb success-orb-two"></div>
+
+    </div>
+
+
+    <div class="success-card">
+
+        <!-- SUCCESS ICON -->
+
+        <div class="success-icon">
+            <span>✓</span>
+        </div>
+
+
+        <!-- LABEL -->
+
+        <p class="success-label">
+            MESSAGE SENT
+        </p>
+
+
+        <!-- HEADING -->
+
+        <h1>
+            Thanks for
+            <span>reaching out.</span>
+        </h1>
+
+
+        <!-- MESSAGE -->
+
+        <p class="success-text">
+            Your message has been received successfully.
+            I'll review your message and get back to you
+            as soon as possible.
+        </p>
+
+
+        <!-- ACTIONS -->
+
+        <div class="success-actions">
+
+            <a
+                href="{% url 'home' %}"
+                class="button button-primary"
+            >
+                Back to Portfolio
+                <span>↗</span>
+            </a>
+
+            <a
+                href="{% url 'home' %}#contact"
+                class="button button-secondary"
+            >
+                Send Another Message
+            </a>
+
+        </div>
+
+
+        <!-- DECORATIVE CODE -->
+
+        <div class="success-code" aria-hidden="true">
+
+            <span>&lt;</span>
+            message
+            <span>/&gt;</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+

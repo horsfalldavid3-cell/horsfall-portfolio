@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ project.title }} | Portfolio
+{% endblock %}
+
+{% block content %}
+
+<section class="project-detail">
+
+    <div class="project-detail-background"></div>
+
+    <div class="container">
+
+        <!-- BACK TO PROJECTS -->
+
+        <a href="{% url 'home' %}#projects" class="project-back">
+            ← Back to Projects
+        </a>
+
+
+        <!-- PROJECT HEADER -->
+
+        <div class="project-detail-header">
+
+            {% if project.featured %}
+                <span class="project-detail-badge">
+                    FEATURED PROJECT
+                </span>
+            {% endif %}
+
+            <span class="section-label">
+                PROJECT
+            </span>
+
+            <h1>
+                {{ project.title }}
+            </h1>
+
+            <p class="project-detail-intro">
+                {{ project.description }}
+            </p>
+
+        </div>
+
+
+        <!-- PROJECT IMAGE -->
+
+        {% if project.image %}
+
+            <div class="project-detail-image">
+
+                <img
+                    src="{{ project.image.url }}"
+                    alt="{{ project.title }}"
+                >
+
+            </div>
+
+        {% endif %}
+
+
+        <!-- PROJECT INFORMATION -->
+
+        <div class="project-detail-grid">
+
+
+            <!-- TECHNOLOGIES -->
+
+            <div class="project-detail-info">
+
+                <span class="project-info-label">
+                    TECHNOLOGIES
+                </span>
+
+
+                {% if project.technology_list %}
+
+                    <div class="project-technologies">
+
+                        {% for technology in project.technology_list %}
+
+                            <span class="technology-tag">
+                                {{ technology }}
+                            </span>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <p class="project-info-empty">
+                        Technologies not specified.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- PROJECT LINKS -->
+
+            <div class="project-detail-info">
+
+                <span class="project-info-label">
+                    PROJECT LINKS
+                </span>
+
+
+                <div class="project-detail-links">
+
+
+                    {% if project.live_url %}
+
+                        <a
+                            href="{{ project.live_url }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="button button-primary"
+                        >
+                            Live Demo
+                            <span>↗</span>
+                        </a>
+
+                    {% endif %}
+
+
+                    {% if project.github_url %}
+
+                        <a
+                            href="{{ project.github_url }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="button button-secondary"
+                        >
+                            GitHub
+                            <span>↗</span>
+                        </a>
+
+                    {% endif %}
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CALL TO ACTION -->
+
+        <div class="project-detail-cta">
+
+            <span class="section-label">
+                HAVE A PROJECT IN MIND?
+            </span>
+
+            <h2>
+                Let's build something
+                <span>great.</span>
+            </h2>
+
+            <a
+                href="{% url 'home' %}#contact"
+                class="button button-primary"
+            >
+                Start a Conversation
+                <span>↗</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
