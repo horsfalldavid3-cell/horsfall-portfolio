@@ -165,6 +165,19 @@ SECURE_SSL_REDIRECT = os.environ.get(
     "DJANGO_SECURE_SSL_REDIRECT", "False"
 ).lower() == "true"
 
+# Trust HTTPS requests forwarded by Render
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# Allow requests from Render-hosted domains
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in os.environ.get(
+        "DJANGO_CSRF_TRUSTED_ORIGINS",
+        "https://*.onrender.com"
+    ).split(",")
+    if origin.strip()
+]
+
 SESSION_COOKIE_SECURE = os.environ.get(
     "DJANGO_SESSION_COOKIE_SECURE", "False"
 ).lower() == "true"
