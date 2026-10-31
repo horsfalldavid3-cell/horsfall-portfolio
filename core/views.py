@@ -9,6 +9,14 @@ from django.http import HttpResponse
 def home(request):
     profile = Profile.objects.first()
 
+    cv_download_url = ""
+
+    if profile and profile.cv:
+        cv_download_url = profile.cv.url.replace(
+            "/upload/",
+            "/upload/fl_attachment/"
+        )
+
     skills = Skill.objects.all()
     services = Service.objects.all()
     experiences = Experience.objects.all()
@@ -28,6 +36,7 @@ def home(request):
 
     context = {
         "profile": profile,
+        "cv_download_url": cv_download_url,
         "skills": skills,
         "services": services,
         "experiences": experiences,

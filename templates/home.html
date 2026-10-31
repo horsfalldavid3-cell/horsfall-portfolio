@@ -149,7 +149,7 @@
 
         {% endif %} {% if profile.cv %}
 
-        <a href="{{ profile.cv.url }}" target="_blank" class="text-link">
+        <a href="{{ cv_download_url }}" class="text-link">
           Download CV
 
           <span>↓</span>
@@ -284,175 +284,123 @@
 <!-- ===================================================== PROJECTS ====================================================== -->
 
 <section class="section projects" id="projects">
-
   <div class="container">
-
     <div class="section-intro">
-
-      <div class="section-index">
-        04
-      </div>
+      <div class="section-index">04</div>
 
       <div>
-
-        <span class="section-label">
-          SELECTED WORK
-        </span>
+        <span class="section-label"> SELECTED WORK </span>
 
         <h2>
           Things I've
           <span>built.</span>
         </h2>
-
       </div>
-
     </div>
-
 
     {% if projects %}
 
-      <div class="projects-list">
+    <div class="projects-list">
+      {% for project in projects %}
 
-        {% for project in projects %}
+      <article class="project-card">
+        <!-- PROJECT IMAGE -->
 
-          <article class="project-card">
+        <div class="project-image">
+          {% if project.image %}
 
-            <!-- PROJECT IMAGE -->
+          <img
+            src="{{ project.image.url }}"
+            alt="{{ project.title }}"
+            loading="lazy"
+          />
 
-            <div class="project-image">
+          {% else %}
 
-              {% if project.image %}
+          <div class="project-placeholder">&lt;/&gt;</div>
 
-                <img
-                  src="{{ project.image.url }}"
-                  alt="{{ project.title }}"
-                  loading="lazy"
-                >
+          {% endif %}
+        </div>
 
-              {% else %}
+        <!-- PROJECT INFORMATION -->
 
-                <div class="project-placeholder">
-                  &lt;/&gt;
-                </div>
+        <div class="project-info">
+          <div class="project-top">
+            <span> PROJECT {{ forloop.counter|stringformat:"02d" }} </span>
 
-              {% endif %}
+            {% if project.technologies %}
 
-            </div>
+            <small> {{ project.technologies }} </small>
 
+            {% endif %}
+          </div>
 
-            <!-- PROJECT INFORMATION -->
+          <h3>{{ project.title }}</h3>
 
-            <div class="project-info">
+          <p>{{ project.description }}</p>
 
-              <div class="project-top">
+          <!-- PROJECT BUTTONS -->
 
-                <span>
-                  PROJECT {{ forloop.counter|stringformat:"02d" }}
-                </span>
+          <div class="project-buttons">
+            <!-- PROJECT DETAIL -->
 
-                {% if project.technologies %}
+            <a
+              href="{% url 'project_detail' project.slug %}"
+              class="project-view"
+            >
+              View Project ↗
+            </a>
 
-                  <small>
-                    {{ project.technologies }}
-                  </small>
+            <!-- LIVE SITE -->
 
-                {% endif %}
+            {% if project.live_url %}
 
-              </div>
+            <a
+              href="{{ project.live_url }}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Live Site ↗
+            </a>
 
+            {% endif %}
 
-              <h3>
-                {{ project.title }}
-              </h3>
+            <!-- GITHUB -->
 
+            {% if project.github_url %}
 
-              <p>
-                {{ project.description }}
-              </p>
+            <a
+              href="{{ project.github_url }}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub ↗
+            </a>
 
+            {% endif %}
+          </div>
+        </div>
+      </article>
 
-              <!-- PROJECT BUTTONS -->
-
-              <div class="project-buttons">
-
-                <!-- PROJECT DETAIL -->
-
-                <a
-                  href="{% url 'project_detail' project.slug %}"
-                  class="project-view"
-                >
-                  View Project ↗
-                </a>
-
-
-                <!-- LIVE SITE -->
-
-                {% if project.live_url %}
-
-                  <a
-                    href="{{ project.live_url }}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Live Site ↗
-                  </a>
-
-                {% endif %}
-
-
-                <!-- GITHUB -->
-
-                {% if project.github_url %}
-
-                  <a
-                    href="{{ project.github_url }}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GitHub ↗
-                  </a>
-
-                {% endif %}
-
-              </div>
-
-            </div>
-
-          </article>
-
-        {% endfor %}
-
-      </div>
-
+      {% endfor %}
+    </div>
 
     {% else %}
 
-      <!-- NO PROJECTS YET -->
+    <!-- NO PROJECTS YET -->
 
-      <div class="projects-coming">
+    <div class="projects-coming">
+      <div class="coming-icon">&lt;/&gt;</div>
 
-        <div class="coming-icon">
-          &lt;/&gt;
-        </div>
+      <span> WORK IN PROGRESS </span>
 
-        <span>
-          WORK IN PROGRESS
-        </span>
+      <h3>Projects are coming soon.</h3>
 
-        <h3>
-          Projects are coming soon.
-        </h3>
-
-        <p>
-          I'm currently finishing projects that will be showcased here.
-        </p>
-
-      </div>
+      <p>I'm currently finishing projects that will be showcased here.</p>
+    </div>
 
     {% endif %}
-
   </div>
-
 </section>
 
 <!-- ===================================================== EXPERIENCE ====================================================== -->
@@ -601,13 +549,8 @@
         {% endif %}
         <!-- CV -->
         {% if profile.cv %}
-        <a
-          href="{{ profile.cv.url }}"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="contact-detail"
-        >
-          <small>RESUME / CV</small> <strong>View my CV ↗</strong>
+        <a href="{{ cv_download_url }}" class="contact-detail">
+          <small>RESUME / CV</small> <strong>Download my CV ↓</strong>
         </a>
         {% endif %} {% endif %}
       </div>
