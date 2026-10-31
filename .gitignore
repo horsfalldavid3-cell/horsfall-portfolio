@@ -34,3 +34,4 @@ Thumbs.db
 
 # Old frontend backup
 backup_frontend/
+production_data.json
